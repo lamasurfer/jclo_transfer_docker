@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  spring:
+    container_name: spring
+    image: transfer
+    build:
+      context: .
+      dockerfile: back.Dockerfile
+    ports:
+      - "8080"
+
+  front:
+    container_name: react
+    image: front
+    build:
+      context: .
+      dockerfile: front.Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - spring
+
